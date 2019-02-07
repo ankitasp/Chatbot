@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Agent Sign up</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Agent SignUp
+					</span>
+				</div>
+
+				<form id="addAgentForm" class="login100-form validate-form">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Name is required">
+						<span class="label-input100">Name</span>
+						<input class="input100" type="text" name="Name" pattern="[A-Za-z]{1,32}"  required  title="name with only character" placeholder="Enter Name"> 
+						<span class="focus-input100"></span>
+					</div>
+                                                               <div class="wrap-input100 validate-input m-b-26" data-validate="Id is required">
+						<span class="label-input100">Emp.Id</span>
+						<input class="input100" type="text" name="Id"pattern="[0-9]{5}" required placeholder="Enter Emp. Id"> 
+						<span class="focus-input100"></span>
+					</div>
+
+                                                                               <div class="wrap-input100 validate-input m-b-26" data-validate="Mobile No.is required">
+						<span class="label-input100">Mobile No.</span>
+						<input class="input100" type="text" name="Mobile_No"  pattern="[7-9]{1}[0-9]{9}" title="Phone number with 7-9 and remaing 9 digit with 0-9" placeholder="Enter Number">
+						<span class="focus-input100"></span>
+					</div>
+                                                             <div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+						<span class="label-input100">Email Id</span>
+						<input class="input100" type="text" name="Email"  pattern=[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}  placeholder="Enter Email">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+                                                                   <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Confirm Password</span>
+						<input class="input100" type="password" name="Cpass"  placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Register
+						</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="login100-form-btn"  input type="reset" value="Reset">
+							Clear
+						</button>
+					</div>
+
+                                                                                
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		function myFunction() {
+		  document.getElementById("addAgentForm").reset();
+		}
+		</script>
+
+		<script>
+	const $form = $('#addAgentForm')
+
+$form.on('submit', submitHandler)
+
+function submitHandler (e) {
+  e.preventDefault()
+
+  $.ajax({
+    url: '/addAgentFormSubmit',
+    type:'POST',
+    data: $form.serialize()
+  }).done(response => {
+	console.log(response)
+	console.log(response.result);
+                if (response.result === 'Emp Id is already exist' || 'Email Id is already exist') {
+                    alert("'Emp Id or Email Id is already exist'");
+                    console.log(response.user);
+                }
+                
+  })
+}
+</script>
+	
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
